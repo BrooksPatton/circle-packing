@@ -1,8 +1,11 @@
 class Circle {
-	constructor(location) {
+	constructor(location, color) {
 		this.location = location;
 		this.size = 1;
 		this.growing = true;
+		this.red = color.r;
+		this.blue = color.b;
+		this.green = color.g;
 	}
 
 	update() {
@@ -13,7 +16,7 @@ class Circle {
 
 	display() {
 		stroke(0);
-		fill(255);
+		fill(this.red, this.green, this.blue);
 		ellipse(this.location.x, this.location.y, this.size);
 	}
 

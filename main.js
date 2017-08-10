@@ -18,10 +18,11 @@ function draw() {
 function addCircle() {
 	const x = random(0, width+1);
 	const y = random(0, height+1);
+	const color = getRandomColor();
 
 	const location = createVector(x, y);
 	if(!insideAnotherCircle(location)) {
-		circles.push(new Circle(location));
+		circles.push(new Circle(location, color));
 	}
 }
 
@@ -52,4 +53,14 @@ function checkIfTouchingAnotherCircle() {
 			}
 		}
 	}
+}
+
+function getRandomColor() {
+	const color = {
+		r: random(0, 256),
+		g: random(0, 256),
+		b: random(0, 256)
+	};
+
+	return color;
 }
