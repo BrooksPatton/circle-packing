@@ -6,6 +6,7 @@ function setup() {
 
 function draw() {
 	addCircle();
+	checkIfTouchingAnotherCircle();
 
 	circles.forEach(c => {
 		c.checkEdges();
@@ -29,6 +30,26 @@ function insideAnotherCircle(location) {
 		const c = circles[i];
 		if(dist(location.x, location.y, c.location.x, c.location.y) < c.size) {
 			return true;
+		}
+	}
+}
+
+function checkIfTouchingAnotherCircle() {
+	for(let i = 0; i < circles.length; i++) {
+		const circle = circles[i];
+		if(circle.growing) {
+			for(let j = 0; j < circles.length; j++) {
+				const other = circles[j];
+				if(i !== j) {
+					const d = dist(circle.location.x, circle.location.y, other.location.x, other.location.y);
+					const size = (circle.size / 2) + (other.size / 2);
+
+					if(d - 2 < size) {
+						circle.growing = false;
+						break;
+					}
+				}
+			}
 		}
 	}
 }
