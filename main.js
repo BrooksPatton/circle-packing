@@ -19,5 +19,16 @@ function addCircle() {
 	const y = random(0, height+1);
 
 	const location = createVector(x, y);
-	circles.push(new Circle(location));
+	if(!insideAnotherCircle(location)) {
+		circles.push(new Circle(location));
+	}
+}
+
+function insideAnotherCircle(location) {
+	for(let i = 0; i < circles.length; i++) {
+		const c = circles[i];
+		if(dist(location.x, location.y, c.location.x, c.location.y) < c.size) {
+			return true;
+		}
+	}
 }
