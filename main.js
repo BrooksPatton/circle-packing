@@ -8,6 +8,7 @@ function draw() {
 	addCircle();
 
 	circles.forEach(c => {
+		c.checkEdges();
 		c.update();
 		c.display();
 	});
